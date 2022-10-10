@@ -19,4 +19,4 @@ jobs:
 
       - name: Test with pytest
         run: |
-          python manade.py test --noinput
+          python manage.py test --noinput
