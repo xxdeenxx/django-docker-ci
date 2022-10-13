@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.DOCKER_PWD }}
 
       - name: Build and push
-        uses: deenlog/test-gjango-ci@v3
+        uses: deenlog/test-gjango-ci
         with:
           push: true
           tags: user/app:latest
