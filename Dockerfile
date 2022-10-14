@@ -1,6 +1,6 @@
 from ubuntu:latest
 
-RUN apt-get update && apt-get install -y python-pip python3 uwsgi nginx uwsgi-plugin-python
+RUN apt-get update && apt-get install -y python-pip python3 uwsgi nginx uwsgi-plugin-python3
 COPY ./ /home/sample_proj/
 RUN rm /etc/nginx/sites-available/default
 RUN ls /home/sample_proj/
