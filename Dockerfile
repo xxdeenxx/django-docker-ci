@@ -1,14 +1,8 @@
-from ubuntu:latest
-
-RUN apt-get update && apt-get install -y python3-pip python3 uwsgi nginx uwsgi-plugin-python3
-COPY ./ /home/sample_proj/
-RUN rm /etc/nginx/sites-available/default
-RUN ls /home/sample_proj/
-RUN cp /home/sample_proj/confs/nginx.conf /etc/nginx/sites-available/sample.conf
-RUN ln -s /etc/nginx/sites-available/sample.conf /etc/nginx/sites-enabled/sample.conf
-RUN pip install -r /home/sample_proj/requirements.txt
-RUN echo "service nginx start\n \
-uwsgi --ini /home/sample_proj/confs/uwsgi.ini" > /tmp/runscript.exe
-
-RUN chmod +x /tmp/runscript.exe
-ENTRYPOINT /tmp/runscript.exe
+FROM python:3
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /code
+WORKDIR /code
+ADD requirements.txt /code/
+RUN pip install -r requirements.txt
+ADD . /code/
+CMD sh init.sh && python3 manage.py runserver 0.0.0.0:8000
