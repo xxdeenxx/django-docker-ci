@@ -32,10 +32,8 @@ jobs:
           username: ${{ secrets.DOCKER_LOGIN }}
           password: ${{ secrets.DOCKER_PWD }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: deenlog/test-gjango-ci:latest
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.DOCKER_TOKEN }}
+      - name: Build image
+        run: docker build -t ${{ secrets.DOCKER_LOGIN }}/${{ secrets.DOCKER_NAME }}:${GITHUB_REF:11} -f Dockerfile .
+
+      - name: Push image to docker.io
+        run: docker push ${{ secrets.DOCKER_LOGIN }}/${{ secrets.DOCKER_NAME }}:${GITHUB_REF:11}
