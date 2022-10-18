@@ -37,7 +37,7 @@ jobs:
 
       - uses: actions/checkout@main
       - name: Build image
-        run: docker build -t ${{ secrets.DOCKER_LOGIN }}/${{ secrets.DOCKER_NAME }}:${GITHUB_REF:11} -f Dockerfile .
+        run: docker build -t ${{ secrets.DOCKER_LOGIN }}/${{ secrets.DOCKER_NAME }}:v0.1 -f Dockerfile .
 
       - name: Push image to docker.io
-        run: docker push deenlog/test-gjango-ci:${GITHUB_REF:11}
+        run: docker push deenlog/test-gjango-ci:v0.1
