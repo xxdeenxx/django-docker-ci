@@ -1,6 +1,11 @@
 name: Python package
 
-on: [push]
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "v*.*.*"
 
 # env:
 #   LOGIN: ${{ secrets.DOCKER_LOGIN }}
@@ -39,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: deenlog/test-gjango-ci:${{ github.run_id }}
+          tags: deenlog/test-gjango-ci:${{ steps.meta.outputs.tags }}
 
       # - uses: actions/checkout@v3
       # - name: Build image
