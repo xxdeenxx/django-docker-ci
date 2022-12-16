@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ github.run_id }}
+          tags: deenlog/test-gjango-ci:${{ github.run_id }}
 
       # - uses: actions/checkout@v3
       # - name: Build image
